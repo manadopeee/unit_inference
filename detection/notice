@@ -1,3 +1,3 @@
-python test.py config/person_unit_faster_rcnn_r50_fpn_1x_coco.py checkpoint/people_epoch_1.pth --eval bbox
+python detection/test.py detection/config/person_unit_faster_rcnn_r50_fpn_1x_coco.py data/unit_infer/checkpoint/detection/people_epoch_1.pth --eval bbox
 
-python test.py config/action_unit_faster_rcnn_r50_fpn_1x_coco.py checkpoint/action_epoch_4.pth --eval bbox
+python detection/test.py detection/config/person_unit_faster_rcnn_r50_fpn_1x_coco.py data/unit_infer/checkpoint/detection/people_epoch_1.pth --eval bbox
