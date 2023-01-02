@@ -316,6 +316,9 @@ def main():
         annotations.append(dict(image_id = image_id, bbox = bbox, category_id = category_id,
                                 id = bbox_id, score = score))
     # print(annotations)
+    if not os.path.exists("./output"):
+        os.makedirs("./output")
+        
     with open('./output/detection_output.json', 'w') as f:
         json.dump(annotations, f)
     
