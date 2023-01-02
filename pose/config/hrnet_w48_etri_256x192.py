@@ -88,8 +88,7 @@ data_cfg = dict(
     vis_thr=0.2,
     use_gt_bbox=True,
     det_bbox_thr=0.0,
-    bbox_file='../detection/output/detection_person_output_7772.json',
-    #bbox_file='../detection/output/detection_person_output_64677.json',
+    bbox_file='./detection/output/detection_output.json',
 )
 
 train_pipeline = [
@@ -139,7 +138,7 @@ val_pipeline = [
 
 test_pipeline = val_pipeline
 
-data_root = '../dataset'
+data_root = './data/unit_infer/dataset/'
 data = dict(
     samples_per_gpu=32,
     workers_per_gpu=2,
@@ -161,8 +160,8 @@ data = dict(
         dataset_info={{_base_.dataset_info}}),
     test=dict(
         type='TopDownCocoDataset',
-        ann_file=f'{data_root}/person_anno/unit_add_person_test_key.json',
-        img_prefix=f'{data_root}/etri_img/1920_img_none_test/',
+        ann_file=f'{data_root}/annotation/pose/unit_add_person_test_key.json',
+        img_prefix=f'{data_root}/image/etri_img/',
         data_cfg=data_cfg,
         pipeline=test_pipeline,
         dataset_info={{_base_.dataset_info}}),
