@@ -194,7 +194,10 @@ def main():
                                                           category_id = class_object['annotations'][j]['category_id'],
                                                           keypoints = preds)
                 
-    with open('./output/pose_output.json', 'w') as f:
+    if not os.path.exists("./pose/output"):
+        os.makedirs("./pose/output")
+        
+    with open('./pose/output/pose_output.json', 'w') as f:
         json.dump(class_object, f)
     
 if __name__ == '__main__':
