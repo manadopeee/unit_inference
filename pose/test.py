@@ -178,7 +178,7 @@ def main():
         for k, v in sorted(results.items()):
             print(f'{k}: {v}') 
 
-    anno_file = '../dataset/classification_anno/etri_class_test.json'
+    anno_file = 'data/unit_infer/dataset/annotation/pose/classification_anno/etri_class_test.json'
     
     with open(anno_file) as f:
         class_object = json.load(f)
