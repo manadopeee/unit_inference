@@ -1,5 +1,6 @@
 import torch
 import time
+import os
 from sklearn.metrics import confusion_matrix
 import pandas as pd
 import seaborn as sns
@@ -93,7 +94,9 @@ def test_species(device, model, test_loader, path, classes, pose_label):
     plt.xlabel("Predicted Class")
     plt.tight_layout()
     # plt.show()
-    plt.savefig('output/Confusion Matrix.png')
+    if not os.path.exists("./classification/output"):
+        os.makedirs("./classification/output")
+    plt.savefig('./classification/output/Confusion Matrix.png')
     
     # print(f'Accuracy of the network on the test images: {100 * correct // total_len} %')
     print('Accuracy of the network on the test images: %.2f %%' % (100 * correct / total_len))
