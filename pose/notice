@@ -1,0 +1,5 @@
+python test.py config/hrnet_w48_coco_256x192.py checkpoint/hrnet_w48_coco_256x192-b9e0b3ab_20200708.pth --eval mAP
+
+python test.py config/hrnet_w48_etri_256x192.py checkpoint/hrnet_w48_coco_256x192-b9e0b3ab_20200708.pth --eval mAP
+
+root@2e8f72352bd0:/mmpose/data/unit_inference/pose# python ../../../tools/train.py config/hrnet_w48_etri_256x192.py --work-dir results
