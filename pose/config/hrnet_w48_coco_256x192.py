@@ -138,7 +138,7 @@ val_pipeline = [
 
 test_pipeline = val_pipeline
 
-data_root = '../dataset/'
+data_root = './data/unit_infer/dataset/'
 data = dict(
     samples_per_gpu=32,
     workers_per_gpu=2,
@@ -160,8 +160,8 @@ data = dict(
         dataset_info={{_base_.dataset_info}}),
     test=dict(
         type='TopDownCocoDataset',
-        ann_file=f'{data_root}/coco_anno/annotation.json',
-        img_prefix=f'{data_root}/coco_img/images/',
+        ann_file=f'{data_root}/annotation/pose/coco_anno/annotation.json',
+        img_prefix=f'{data_root}/image/coco_img/',
         data_cfg=data_cfg,
         pipeline=test_pipeline,
         dataset_info={{_base_.dataset_info}}),
