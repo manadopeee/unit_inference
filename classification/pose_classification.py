@@ -12,7 +12,7 @@ from Tester import *
 
 # train_keypoints = './data/data/unit_test/annot/unit_add_none_train_key.json'
 # valid_keypoints = './data/data/unit_test/annot/unit_add_none_test_key.json'
-test_keypoints = '../pose/output/pose_output.json'
+test_keypoints = './pose/output/pose_output.json'
 # img_dir = './data/hyodol/threshold/video_to_images'
 # # classes = { 3:'medicine', 31:'remote', 53:'fall'}
 classes = {0:0, 3:1, 31:2, 53:3}
