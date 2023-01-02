@@ -12,7 +12,7 @@ from mmcv.cnn import fuse_conv_bn
 from mmcv.runner import (get_dist_info, init_dist, load_checkpoint,
                          wrap_fp16_model)
 
-from mmdet.apis import multi_gpu_test, single_gpu_test
+# from mmdet.apis import multi_gpu_test, single_gpu_test
 from mmdet.datasets import (build_dataloader, build_dataset,
                             replace_ImageToTensor)
 from mmdet.models import build_detector
@@ -21,6 +21,10 @@ from mmdet.utils import (build_ddp, build_dp, compat_cfg, get_device,
                          update_data_root)
 
 import json
+import sys
+# sys.path.append('/mmdetection')
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname('/mmdetection'))))
+from mmdetection.mmdet.apis import multi_gpu_test, single_gpu_test
 
 
 def parse_args():
