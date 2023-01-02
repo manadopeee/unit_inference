@@ -190,8 +190,8 @@ data = dict(
     test=dict(
         type='CocoDataset',
         ann_file=
-        '../dataset/person_anno/unit_add_person_test.json',
-        img_prefix='../dataset/etri_img/1920_img_none_test/',
+        './data/unit_infer/dataset/annotation/detection/unit_add_person_test.json',
+        img_prefix='./data/unit_infer/dataset/image/etri_img/',
         classes=('person', ),
         pipeline=[
             dict(type='LoadImageFromFile'),
