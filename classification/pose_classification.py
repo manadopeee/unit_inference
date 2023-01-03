@@ -49,7 +49,7 @@ net = Net(classes).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=1e-3, weight_decay=0.0001)
 
-path = "./data/NetModel.pth" 
+path = "./data/classification.pth" 
 # train(device, criterion, optimizer, net, train_loader, valid_loader, epochs, path)
 # test(device, net, test_loader, path)
 test_species(device, net, test_loader, path, classes, pose_label)
