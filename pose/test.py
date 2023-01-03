@@ -69,6 +69,8 @@ def parse_args():
         default='none',
         help='job launcher')
     parser.add_argument('--local_rank', type=int, default=0)
+    parser.add_argument('--iscoco', default=False,)
+    parser.add_argument('--class_anno_path', default=None,)
     args = parser.parse_args()
     if 'LOCAL_RANK' not in os.environ:
         os.environ['LOCAL_RANK'] = str(args.local_rank)
@@ -88,7 +90,7 @@ def main():
     args = parse_args()
 
     cfg = Config.fromfile(args.config)
-    print('args.config', args.config)
+    # print('args.config', args.config)
     if args.cfg_options is not None:
         cfg.merge_from_dict(args.cfg_options)
 
@@ -178,27 +180,31 @@ def main():
         for k, v in sorted(results.items()):
             print(f'{k}: {v}') 
 
-    anno_file = 'data/unit_infer/dataset/annotation/pose/classification_anno/etri_class_test.json'
-    
-    with open(anno_file) as f:
-        class_object = json.load(f)
-    
-    for output in outputs:
-        for i, image_path in enumerate(output['image_paths']):
-            image_name = image_path.split('/')[-1]
-            for j, class_obj in enumerate(class_object['images']):
-                if image_name == class_obj['file_name']:
-                    preds = np.reshape(output['preds'][i], -1).tolist()
-                    class_object['annotations'][j] = dict(image_id = class_object['annotations'][j]['image_id'], 
-                                                          id = class_object['annotations'][j]['id'], 
-                                                          category_id = class_object['annotations'][j]['category_id'],
-                                                          keypoints = preds)
-                
-    if not os.path.exists("./pose/output"):
-        os.makedirs("./pose/output")
+    if args.iscoco == False:
+        if args.class_anno_path == None:
+            class_anno_path = 'data/etri/unit_add_none_test_key.json'
+        else:
+            class_anno_path = args.class_anno_path
         
-    with open('./pose/output/pose_output.json', 'w') as f:
-        json.dump(class_object, f)
+        with open(anno_file) as f:
+            class_object = json.load(f)
+        
+        for output in outputs:
+            for i, image_path in enumerate(output['image_paths']):
+                image_name = image_path.split('/')[-1]
+                for j, class_obj in enumerate(class_object['images']):
+                    if image_name == class_obj['file_name']:
+                        preds = np.reshape(output['preds'][i], -1).tolist()
+                        class_object['annotations'][j] = dict(image_id = class_object['annotations'][j]['image_id'], 
+                                                            id = class_object['annotations'][j]['id'], 
+                                                            category_id = class_object['annotations'][j]['category_id'],
+                                                            keypoints = preds)
+                    
+        if not os.path.exists("./pose/output"):
+            os.makedirs("./pose/output")
+            
+        with open('./pose/output/pose_output.json', 'w') as f:
+            json.dump(class_object, f)
     
 if __name__ == '__main__':
     main()
