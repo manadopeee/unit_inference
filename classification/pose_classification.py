@@ -10,8 +10,8 @@ from Net import Net
 from Trainer import train
 from Tester import *
 
-# train_keypoints = './data/data/unit_test/annot/unit_add_none_train_key.json'
-# valid_keypoints = './data/data/unit_test/annot/unit_add_none_test_key.json'
+# train_keypoints = 'data/etri/unit_add_none_train_key.json'
+# valid_keypoints = 'data/etri/unit_add_none_test_key.json'
 test_keypoints = './pose/output/pose_output.json'
 # img_dir = './data/hyodol/threshold/video_to_images'
 # # classes = { 3:'medicine', 31:'remote', 53:'fall'}
@@ -49,7 +49,7 @@ net = Net(classes).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=1e-3, weight_decay=0.0001)
 
-path = "./checkpoint/NetModel_none.pth" 
+path = "./data/NetModel.pth" 
 # train(device, criterion, optimizer, net, train_loader, valid_loader, epochs, path)
 # test(device, net, test_loader, path)
 test_species(device, net, test_loader, path, classes, pose_label)
